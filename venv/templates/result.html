@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>shortURL</title>
+    <style>
+      body {
+        background: url("{{ url_for('static', filename='big.jpg') }}")
+          center/cover no-repeat fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        overflow: hidden; /* To prevent background image overflow */
+      }
+      .container {
+        text-align: center;
+        background-color: rgba(247, 153, 13, 0.5);
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(36, 13, 236, 0.6);
+        backdrop-filter: blur(4px); /* Add a blur effect to the background */
+      }
+      input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      input[type="text"]:hover {
+        background-color: #2d6870;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <h1 style="color: green">URL Shortened succesfully.</h1>
+      <input type="text" id="myInput" value="{{shortURL}}" readonly />
+    </div>
+    <script>
+      const myInput = document.getElementById("myInput");
+      myInput.addEventListener("click", () => {
+        urlToCopy = myInput.value;
+        navigator.clipboard
+          .writeText(urlToCopy)
+          .then(() => {
+            // Success: Display a notification
+            const notification = document.createElement("div");
+            notification.textContent = "Text copied!";
+            notification.classList.add("notification");
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+              notification.remove();
+            }, 2000); // Remove notification after 2 seconds
+          })
+          .catch((err) => {
+            console.error("Clipboard error:", err);
+          });
+      });
+    </script>
+  </body>
+</html>

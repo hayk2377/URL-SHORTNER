@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>shortURL</title>
+    <style>
+      body {
+        background: url("{{ url_for('static', filename='big.jpg') }}")
+          center/cover no-repeat fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        overflow: hidden; /* To prevent background image overflow */
+      }
+
+      .container {
+        text-align: center;
+        background-color: rgba(247, 153, 13, 0.5);
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(36, 13, 236, 0.6);
+        backdrop-filter: blur(4px); /* Add a blur effect to the background */
+      }
+      h1 {
+        padding: 10px;
+        border-radius: 8px;
+        animation: changeText 12s infinite; /* Slow down the animation to 10 seconds */
+        background-clip: text; /* Apply gradient to the text */
+        color: transparent; /* Set text color to transparent to allow the gradient */
+      }
+      @keyframes changeText {
+        100%,
+        0% {
+          background-image: linear-gradient(
+            to right,
+            hsl(0, 100%, 50%),
+            hsl(60, 100%, 50%)
+          );
+        }
+        12% {
+          background-image: linear-gradient(
+            to right,
+            hsl(40, 100%, 50%),
+            hsl(100, 100%, 50%)
+          );
+        }
+        25% {
+          background-image: linear-gradient(
+            to right,
+            hsl(80, 100%, 50%),
+            hsl(140, 100%, 50%)
+          );
+        }
+        37% {
+          background-image: linear-gradient(
+            to right,
+            hsl(120, 100%, 50%),
+            hsl(180, 100%, 50%)
+          );
+        }
+        50% {
+          background-image: linear-gradient(
+            to right,
+            hsl(160, 100%, 50%),
+            hsl(220, 100%, 50%)
+          );
+        }
+        63% {
+          background-image: linear-gradient(
+            to right,
+            hsl(200, 100%, 50%),
+            hsl(260, 100%, 50%)
+          );
+        }
+        75% {
+          background-image: linear-gradient(
+            to right,
+            hsl(240, 100%, 50%),
+            hsl(280, 100%, 50%)
+          );
+        }
+        87% {
+          background-image: linear-gradient(
+            to right,
+            hsl(280, 100%, 50%),
+            hsl(320, 100%, 50%)
+          );
+        }
+      }
+      p {
+        color: #0af0f0;
+      }
+
+      form {
+        margin-top: 20px;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      input[type="submit"] {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome!</h1>
+      <p>Insert a URL you want to shorten!</p>
+      <form method="post" action="/create-url/">
+        <input type="text" name="url" required aria-required="true" />
+        <input type="submit" value="Shorten" />
+      </form>
+    </div>
+  </body>
+</html>
